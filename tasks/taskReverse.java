@@ -1,3 +1,4 @@
+package tasks;
 public class taskReverse {
     public static void main(String[] args) {
         int num = 789;

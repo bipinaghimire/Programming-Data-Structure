@@ -23,7 +23,7 @@ public class LinkedList {
         head =newNode;
     }
 
-    public void addLast(int data){
+    public void addNode(int data){
         Node newnode = new Node(data);
         if (head==null){
             head=newnode;
@@ -82,7 +82,7 @@ public class LinkedList {
         ll.addFirst(2);
         ll.addFirst(3);
         ll.printList();
-        ll.addLast(55);
+        ll.addNode(55);
         ll.printList();
         ll.addFirst(1);
         ll.printList();

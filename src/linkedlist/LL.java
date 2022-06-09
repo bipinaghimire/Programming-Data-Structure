@@ -41,7 +41,31 @@ public class LL {
         }
         currNode.next =newNode;
     }
+     
+    // add node at last with time complexity of o(1)
+    Node tail;
+    public void addNode(int data){
+        size++;
+        Node newnode=new Node(data);
+        if(head==null){
+            head=tail=newnode;
+        }
+    else{
+        tail.next=newnode;
+        tail=newnode;
+    }
+}
 
+    //add at any node
+    public int addAny(int pos){
+        Node current=head;
+        //0
+        for(int i=1;i<=pos;i++){
+            current=current.next;
+        }
+        return current.data;
+        
+    }
     // print
     public void printList(){      
         if(head ==null){
@@ -114,5 +138,10 @@ public class LL {
         list.addFirst(1);
         list.printList();
         System.out.println(list.getSize());
+
+        list.addAny(3);
+        list.printList();
+        System.out.println(list.getSize());
+
     }
 }

@@ -6,8 +6,8 @@ import java.util.Stack;
 // queue operations.
 
 public class TwoStacksQ {
-    Stack<Integer> input = new Stack();
-    Stack<Integer> output = new Stack();
+    Stack<Integer> input = new Stack<Integer>();
+    Stack<Integer> output = new Stack<Integer>();
 
     public void enqueue(int x){
         input.push(x);

@@ -1,43 +1,46 @@
 package src.Graph;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import src.Graph.SinglyLinkedLIst.Node;
 
 public class AdjList {
-    LinkedList [] a;
+    SinglyLinkedLIst[] a;
     int vertices;
+
     AdjList(int vertices){
-        a= new LinkedList[vertices];
+        a= new SinglyLinkedLIst[vertices];
         this.vertices = vertices; 
         // creating array whose size == no of vertices which is connected to a linked list
         for (int i=0;i<vertices;i++){
-            a[i] =new LinkedList();
+            a[i] =new SinglyLinkedLIst();
         }
     }
 
     public void addEdge(int s, int d){
-        a[s].add(d);
-        a[d].add(s);
+        a[s].addNode(d);
+        a[d].addNode(s);
     }
 
     public void printGraph(){
         for(int i= 0; i<vertices;i++){   
-            if(a[i].size()>0){    
+            if(a[i].getSize()>0){    
                 System.out.print(i+"--->"); 
-            for(int j =0;j<a[i].size();j++){
-                System.out.print(a[i].get(j)+"-->");
+            for(int j =0;j<a[i].getSize();j++){
+                System.out.print(a[i].getDataAtAnyPos(j)+"-->");
             }  
             System.out.println("null");
             }      
         }
     }
-
-    public ArrayList getAnyNode(int i){
-        ArrayList listData= new ArrayList();
-        for(int j =0; j< i;j++){
-            listData.add(j);
+    public int [] getAnyNode(int i){
+        int [] list=new int [a[i].getSize()];
+        int indx=0;
+        Node current=a[i].head;
+        while(current!=null){
+            //System.out.print(current.data+" , ");
+            list[indx++]=current.data;
+            current=current.next;
         }
-        return listData;
+       return list; 
     }
   
     public static void main(String[] args) {

@@ -44,6 +44,63 @@ public class GraphAdjList {
       }
         
     }
+    public void BFS(int rootnode){
+        System.out.println("printing bfs");
+        boolean visited [] =new boolean[vertices];
+        QueueG queue=new QueueG(vertices);
+        visited[rootnode]=true;
+        queue.enqueue(rootnode);
+        while(!queue.isEmpty()){
+            int x=queue.dequeue();
+            int adjlist[]=getAdjNodes(x);
+            for(int i=0;i<adjlist.length;i++){
+                int adjval=adjlist[i];
+                if(!visited[adjval]){
+                    queue.enqueue(adjval);
+                    visited[adjval]=true;
+                }
+            }
+                System.out.println(x);
+        }
+    }
+
+    public void DFS(int rootnode){
+        System.out.println("printing dfs");
+        boolean visited [] =new boolean[vertices];
+        StackG stack = new StackG(vertices);
+        stack.push(rootnode);
+        visited[rootnode]=true;
+      
+        while (!stack.isEmpty()){
+            int x = stack.pop();
+            int[] adjlist = getAdjNodes(x);
+            for(int i=0;i<adjlist.length;i++ ){
+                int adjval=adjlist[i];
+                if(!visited[adjval]){
+                    visited[adjval]=true;
+                    stack.push(adjval);
+                }
+            }
+            System.out.print(x);
+        }
+    }
+
+
+    public void DFSRec(int x, boolean visited []){
+        visited[x] = true;
+        System.out.print(x);
+        for(int i: getAdjNodes(x) ){
+            if(!visited[i]){
+                DFSRec(i, visited);
+            }
+        }
+    }
+
+    public void DFSresult(int root){
+        boolean visited [] =new boolean[vertices];
+        System.out.println("DFS traversal");
+        DFSRec(root, visited); 
+    }
 
     public int [] getAdjNodes(int i){
         int [] list=new int [a[i].getSize()];
@@ -60,13 +117,17 @@ public class GraphAdjList {
     public static void main(String [] args){
         GraphAdjList g=new GraphAdjList(5);
         g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(1, 3);
-        g.addEdge(2, 4);
-        g.addEdge(3, 4);
+        g.addEdge(3,2);
+        g.addEdge(2,4);
+        g.addEdge(1,4);
+        g.addEdge(3,1);
+        g.addEdge(2,0);
         g.printGraph();
-        g.printGraph1();
+        // g.printGraph1();
+
+        g.BFS(0);
+        g.DFSresult(0);
+        g.DFS(0);
     }
 
-}
+} 

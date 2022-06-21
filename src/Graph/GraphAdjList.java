@@ -64,43 +64,110 @@ public class GraphAdjList {
         }
     }
 
-    public void DFS(int rootnode){
-        System.out.println("printing dfs");
-        boolean visited [] =new boolean[vertices];
-        StackG stack = new StackG(vertices);
-        stack.push(rootnode);
+    public void depthFirstSearch(int rootnode){
+        boolean visited[]=new boolean[vertices];
         visited[rootnode]=true;
+        dfs(rootnode,visited);
+    }
+
+    public void dfs(int rootnode,boolean [] visited){
+       System.out.println(rootnode);
+       int [] list=getAdjNodes(rootnode); 
+       for(int i=0;i<list.length;i++){
+         int adjval=list[i];
+         if(!visited[adjval]){
+            visited[adjval]=true;
+            dfs(adjval,visited);
+         }
+       }
+    }
+
+    public void topoSort(){
+    int indegree[]=new int[vertices];
+    for(int i=0;i<vertices;i++){
+        //i=0 list=[1,2] list[j]=list[0]=1=adjval
+       int [] list= getAdjNodes(i);
+       for(int j=0;j<list.length;j++){
+            int adjval=list[j];
+            indegree[adjval]++;
+           // indegree[adjval]=indegree[adjval]+1;
+       }
+    }
+    
+        QueueG queue=new QueueG(vertices);
+       for(int i=0;i<indegree.length;i++){
+        if(indegree[i]==0){
+            queue.equals(i);
+        }
+       }
+       int cnt=0;
+       while(!queue.isEmpty()){
+        cnt++;
+        int x=queue.dequeue();
+        System.out.println(x);
+        int list[]=getAdjNodes(x);
+        //[0]->[1,2] adjval=1
+        for(int i=0;i<list.length;i++){
+            int adjval=list[i];
+           // indegree[adjval]--;
+            if(indegree[adjval]--==0){
+                queue.enqueue(adjval);
+            }
+        }
+
+       }
+///  if(cnt!=vertices){cycle detected}
+    }
+
+    // public void DFS(int rootnode){
+    //     System.out.println("printing dfs");
+    //     boolean visited [] =new boolean[vertices];
+    //     StackG stack = new StackG(vertices);
+    //     stack.push(rootnode);
+    //     visited[rootnode]=true;
       
-        while (!stack.isEmpty()){
-            int x = stack.pop();
-            int[] adjlist = getAdjNodes(x);
-            for(int i=0;i<adjlist.length;i++ ){
-                int adjval=adjlist[i];
-                if(!visited[adjval]){
-                    visited[adjval]=true;
-                    stack.push(adjval);
-                }
-            }
-            System.out.print(x);
-        }
-    }
+    //     while (!stack.isEmpty()){
+    //         int x = stack.pop();
+    //         int[] adjlist = getAdjNodes(x);
+    //         for(int i=0;i<adjlist.length;i++ ){
+    //             int adjval=adjlist[i];
+    //             if(!visited[adjval]){
+    //                 visited[adjval]=true;
+    //                 stack.push(adjval);
+    //             }
+    //         }
+    //         System.out.print(x);
+    //     }
+    // }
 
+    public void dfsTopo(){
+        boolean visited[]=new boolean[vertices];
+        StackG stk = new StackG(vertices);
 
-    public void DFSRec(int x, boolean visited []){
-        visited[x] = true;
-        System.out.print(x);
-        for(int i: getAdjNodes(x) ){
+        for (int i =0; i<vertices; i++){
             if(!visited[i]){
-                DFSRec(i, visited);
+                dfsTopoSort(i, visited, stk);
             }
         }
+        for (int i=0; i<vertices;i++){
+            System.out.print(stk.pop());
+        }
+}
+
+    public void dfsTopoSort(int rootnode, boolean visited[], StackG stk){
+        visited[rootnode]= true;
+        int list[]=getAdjNodes(rootnode);
+        for(int i =0; i<list.length;i++){
+            int adjval = list [i];
+            if(!visited[adjval]){
+                dfsTopoSort(adjval,visited,stk);
+            }
+        }
+        stk.push(rootnode);
+
     }
 
-    public void DFSresult(int root){
-        boolean visited [] =new boolean[vertices];
-        System.out.println("DFS traversal");
-        DFSRec(root, visited); 
-    }
+
 
     public int [] getAdjNodes(int i){
         int [] list=new int [a[i].getSize()];
@@ -126,8 +193,10 @@ public class GraphAdjList {
         // g.printGraph1();
 
         g.BFS(0);
-        g.DFSresult(0);
-        g.DFS(0);
+        // g.DFSresult(0);
+        //g.DFS(0);
+        g.topoSort();
+        g.dfsTopo();
     }
 
 } 

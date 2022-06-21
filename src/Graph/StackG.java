@@ -54,3 +54,21 @@ public class StackG {
     }
     
 }
+
+
+    // public void DFSRec(int x, boolean visited []){
+    //     visited[x] = true;
+    //     System.out.print(x);
+    //     for(int i: getAdjNodes(x) ){
+    //         if(!visited[i]){
+    //             DFSRec(i, visited);
+    //         }
+    //     }
+    // }
+
+    // public void DFSresult(int root){
+    //     boolean visited [] =new boolean[vertices];
+    //     System.out.println("DFS traversal");
+    //     DFSRec(root, visited);  
+    // }
+

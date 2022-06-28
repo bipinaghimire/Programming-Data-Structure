@@ -6,6 +6,7 @@ import java.util.List;
 import src.linkedlist.LinkedList;
 
 
+
 public class MatrixGraph {
    int vertices;
    int  matrix[][]; 
@@ -29,6 +30,8 @@ public class MatrixGraph {
            System.out.println(" ");
        }
     }
+
+    // dijkstra's algorithm
     public void dijkstra(int source,int destination){
        int distance[]=new int [vertices];
        int prevpath[]=new int[vertices];
@@ -86,6 +89,53 @@ public class MatrixGraph {
         }
         return minvertex;
     }
+
+
+    // shortest distance for unweighted graph
+    public void UnweightedShortDist(int source, int destination){
+        boolean visited[]=new boolean[vertices];
+        QueueG queue = new QueueG(vertices);
+        int distance[] =new int[vertices];
+        int prevpath[] = new int[vertices];
+        for(int i=0; i<vertices;i++){
+            distance[i]=Integer.MAX_VALUE;
+            prevpath[i]=-1;
+        }
+        distance[source]=0;
+        queue.enqueue(source);
+        visited[source]=true;
+        while(!queue.isEmpty()){
+            int u = queue.dequeue();
+            for(int i=0; i<vertices;i++){
+                if(matrix[u][i]!=0 && !visited[i]){
+                    int v=i;
+                    int newdistance = distance[u]+1;
+                    if(newdistance<distance[v]){
+                        distance[v]= newdistance;
+                        prevpath[v]= u;
+                    }
+                    queue.enqueue(u);
+                    visited[v]=true;
+                }
+            }
+        }
+        System.out.println("distance from source: "+source+" to destination: "+destination+" is="+distance[destination]);
+        int crawl=destination;
+        int path[]=new int[vertices];
+        int indx=0;
+        while(crawl!=-1){
+         path[indx++]=crawl;
+         crawl=prevpath[crawl];
+        }
+        for(int i=indx-1;i>=0;i--){
+             System.out.println(path[i]);
+        } 
+    }
+
+
+
+
+
     public void printgraph(){
         for(int i=0;i<vertices;i++){
             System.out.print(i +" is connected to ");
@@ -99,20 +149,20 @@ public class MatrixGraph {
     }
 
     public void BFS(int rootnode){
-        boolean visited[] = new boolean[vertices];
-        List<Integer> q = new ArrayList<>();
-        q.add(rootnode);
-        visited[rootnode] = true;
-        while(!q.isEmpty()){
-            int x = q.get(0);
-            System.out.println(x);
-            q.remove(q.get(0));
-            for(int i =0;i<vertices;i++){
-                if(matrix[x][i] ==1 &&(!visited[i])){
-                    q.add(i);
+        System.out.println("printing bfs");
+        boolean visited [] =new boolean[vertices];
+        QueueG queue=new QueueG(vertices);
+        visited[rootnode]=true;
+        queue.enqueue(rootnode);
+        while(!queue.isEmpty()){
+            int x=queue.dequeue();
+            for(int i=0;i<vertices;i++){
+                if(matrix[x][i]!=0&&!visited[i]){
+                    queue.enqueue(i);
                     visited[i]=true;
                 }
             }
+                System.out.print(x);
         }
     }
 
@@ -143,5 +193,8 @@ public class MatrixGraph {
         g.getAdjNode(2);
         g.getAdjNode(0);
 
+        g.UnweightedShortDist(1, 5);
+        g.dijkstra(1,5 );
+        g.BFS(1);
     }
 }

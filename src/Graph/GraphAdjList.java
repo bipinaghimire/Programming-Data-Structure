@@ -192,7 +192,7 @@ public class GraphAdjList {
         g.printGraph();
         // g.printGraph1();
 
-        g.BFS(0);
+        g.BFS(1);
         // g.DFSresult(0);
         //g.DFS(0);
         g.topoSort();

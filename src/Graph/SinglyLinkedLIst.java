@@ -27,7 +27,8 @@ public void addNode(int data){
     }
 }
 
-public int getSize(){return size;}
+public int getSize(){
+    return size;}
 
 public int getDataAtAnyPos(int pos){
     Node current=head;
@@ -37,15 +38,6 @@ public int getDataAtAnyPos(int pos){
     }
     return current.data;
 }
-public static void main(String [] args){
-    SinglyLinkedLIst list=new SinglyLinkedLIst();
-    list.addNode(10);
-    list.addNode(20);
-    System.out.println(list.getDataAtAnyPos(2));
-     System.out.println(list.getSize());
-    
-}
-
 public void printlist(){
     Node current=head;
     while(current!=null){
@@ -53,4 +45,14 @@ public void printlist(){
         current=current.next;
     }
 }
+public static void main(String [] args){
+    SinglyLinkedLIst list=new SinglyLinkedLIst();
+    list.addNode(10);
+    list.addNode(20);
+    System.out.println(list.getDataAtAnyPos(2));
+    System.out.println(list.getSize());
+    list.printlist();
+    
+}
+
 }

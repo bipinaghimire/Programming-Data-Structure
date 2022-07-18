@@ -13,6 +13,7 @@ public class AcitivitySelect {
                 count++;
             }
         }
+        System.out.println(count);
     }
 
     public static void main(String[] args) {

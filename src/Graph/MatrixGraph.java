@@ -1,8 +1,5 @@
 package src.Graph;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import src.linkedlist.LinkedList;
 
 
@@ -42,7 +39,7 @@ public class MatrixGraph {
         prevpath[i]=-1;
        }
 
-       distance[source]=0;
+       distance[source]=0; 
 
        for(int i=0;i<vertices;i++){
         int u=findminimumvertex(visited,distance);
@@ -128,11 +125,9 @@ public class MatrixGraph {
          crawl=prevpath[crawl];
         }
         for(int i=indx-1;i>=0;i--){
-             System.out.println(path[i]);
+             System.out.println("path is "+ path[i]);
         } 
     }
-
-
 
 
 
@@ -157,12 +152,12 @@ public class MatrixGraph {
         while(!queue.isEmpty()){
             int x=queue.dequeue();
             for(int i=0;i<vertices;i++){
-                if(matrix[x][i]!=0&&!visited[i]){
+                if(matrix[x][i]!=0 && !visited[i]){
                     queue.enqueue(i);
                     visited[i]=true;
                 }
             }
-                System.out.print(x);
+            System.out.print( x+ " ");
         }
     }
 

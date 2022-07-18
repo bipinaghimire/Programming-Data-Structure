@@ -14,7 +14,7 @@ public class MergeSort {
     void merge(int [] r, int start,int mid, int end ){
         int a[]=new int[mid-start+1];
         for (int indx=0; indx<a.length;indx++){
-            a[indx]= r[start]+r[indx];
+            a[indx]= r[start+indx];
         }
         int b[]= new int[end-mid];
         for(int indx=0; indx<b.length;indx++){
@@ -24,7 +24,7 @@ public class MergeSort {
         int i=0; 
         int j=0;
         int k=start;
-        while(i<=a.length && j<b.length){
+        while(i<a.length && j<b.length){
             if(a[i]<=b[j]){
                 r[k]=a[i];
                 i++;

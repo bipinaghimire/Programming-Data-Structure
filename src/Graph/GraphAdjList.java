@@ -97,7 +97,7 @@ public class GraphAdjList {
         QueueG queue=new QueueG(vertices);
        for(int i=0;i<indegree.length;i++){
         if(indegree[i]==0){
-            queue.equals(i);
+            queue.enqueue(i);
         }
        }
        int cnt=0;
@@ -116,7 +116,8 @@ public class GraphAdjList {
         }
 
        }
-///  if(cnt!=vertices){cycle detected}
+     if(cnt!=vertices){
+        System.out.println("cycle detected"); }
     }
 
     // public void DFS(int rootnode){

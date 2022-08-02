@@ -24,8 +24,8 @@ public class TwoQueueS {
         // Push all the remaining
         // elements in q1 to q2.
         while (!q1.isEmpty()) {
-            q2.add(q1.peek());
-            q1.remove();
+            q2.add(q1.remove());
+            // q1.remove();
         }
 
         // swap the names of two queues

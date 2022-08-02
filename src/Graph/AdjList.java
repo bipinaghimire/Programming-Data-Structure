@@ -53,7 +53,8 @@ public class AdjList {
         adjacentlist.addEdge(1, 4);
         adjacentlist.addEdge(2, 3);
         adjacentlist.addEdge(3, 4);
-        adjacentlist.getAnyNode(1);
+        int[] abc =adjacentlist.getAnyNode(1);
+        System.out.println("adj node"+abc);
         
         adjacentlist.printGraph();
     }

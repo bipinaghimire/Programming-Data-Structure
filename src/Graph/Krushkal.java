@@ -6,6 +6,7 @@ public class Krushkal {
 
 int vertices;
 Edge edges[];
+
 Krushkal(int vertices){
     this.vertices=vertices;
     edges=new Edge[vertices];
@@ -82,6 +83,9 @@ edgeTaken++;
         }
        return  parent[u]=find(parent[u],parent,size);
     }
+
+
+
 
     public static void main(String[] args){
         Krushkal k=new Krushkal(5);

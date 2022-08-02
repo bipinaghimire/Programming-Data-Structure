@@ -183,13 +183,13 @@ public class GraphAdjList {
     }
 
     public static void main(String [] args){
-        GraphAdjList g=new GraphAdjList(5);
+        GraphAdjList g=new GraphAdjList(6);
         g.addEdge(0, 1);
-        g.addEdge(3,2);
-        g.addEdge(2,4);
-        g.addEdge(1,4);
-        g.addEdge(3,1);
-        g.addEdge(2,0);
+        g.addEdge(1, 3);
+        g.addEdge(2, 0);
+        g.addEdge(2, 4);
+        g.addEdge(4, 3);
+        g.addEdge(5, 3);
         g.printGraph();
         // g.printGraph1();
 
@@ -198,6 +198,8 @@ public class GraphAdjList {
         //g.DFS(0);
         g.topoSort();
         g.dfsTopo();
+        System.out.println("Affected area");
+        g.depthFirstSearch(4);
     }
 
 } 

@@ -1,7 +1,7 @@
 package tasks;
 
 public class Merge{
-    class Node{
+    static class Node{
         int data;
         Node next;
         Node(int data){
@@ -67,5 +67,31 @@ public class Merge{
             System.out.print(node.data + " ");
             node = node.next;
         }
+    }
+    public static void main(String[] args) {
+        Merge m = new Merge();
+        int k = 4;
+        Node[] list = new Node[k];
+        list[0]=new Node(2);
+        list[0].next = new Node(3);
+        list[0].next.next = new Node(2);
+
+        list[1] = new Node(7);
+        list[1].next = new Node(8);
+        list[1].next.next = new Node(6);
+
+        list[2] = new Node(11);
+        list[2].next = new Node(12);
+        list[2].next.next = new Node(13);
+        list[2].next.next.next = new Node(14);
+
+        list[3] = new Node(16);
+        list[3].next = new Node(17);
+        list[3].next.next = new Node(18);
+
+        printList(list[0]);
+        Node head = m.mergeKList(list, k);
+        System.out.println(head);
+
     }
 }
